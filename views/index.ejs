@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <% include partials/head.ejs %>
+  <body>
+    <% include partials/header.ejs %>
+    <% include partials/nav.ejs %>
+
+    <main>
+      <h2>Welcome to CSE Motors!</h2>
+      <section class="promo">
+        <div class="promo-text">
+          <h3>DMC Delorean</h3>
+          <ul>
+            <li>3 Cup holders</li>
+            <li>Superman doors</li>
+            <li>Fuzzy dice!</li>
+          </ul>
+          <a class="btn" href="#">Own Today</a>
+        </div>
+        <img src="/images/delorean.png" alt="Delorean car" />
+      </section>
+
+      <section class="upgrades">
+        <h3>Delorean Upgrades</h3>
+        <div class="cards">
+          <div><img src="/images/flux-cap.png" alt=""><a href="#">Flux Capacitor</a></div>
+          <div><img src="/images/flame-decals.png" alt=""><a href="#">Flame Decals</a></div>
+          <div><img src="/images/bumper-sticker.png" alt=""><a href="#">Bumper Stickers</a></div>
+          <div><img src="/images/hub-cap.png" alt=""><a href="#">Hub Caps</a></div>
+        </div>
+      </section>
+
+      <section class="reviews">
+        <h3>DMC Delorean Reviews</h3>
+        <ul>
+          <li>"So fast it’s almost like traveling in time." (4/5)</li>
+          <li>"Coolest ride on the road." (4/5)</li>
+          <li>"I’m feeling McFly!" (5/5)</li>
+          <li>"The most futuristic ride of our day." (4.5/5)</li>
+          <li>"80’s livin and I love it!" (5/5)</li>
+        </ul>
+      </section>
+    </main>
+
+    <% include partials/footer.ejs %>
+  </body>
+</html>
