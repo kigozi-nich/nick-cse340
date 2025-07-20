@@ -242,6 +242,7 @@ VALUES   (
     5
   );
 
+console.log('Classifications Data:', data);
 
  
 
