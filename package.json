@@ -155,22 +155,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-<<<<<<< HEAD
-  "dependencies": {
-    "connect-flash": "^0.1.1",
-    "connect-pg-simple": "^10.0.0",
-    "dotenv": "^16.0.3",
-    "ejs": "^3.1.10",
-    "express": "^4.18.2",
-    "express-ejs-layouts": "^2.5.1",
-    "express-messages": "^1.0.1",
-    "express-session": "^1.18.2",
-    "express-validation": "^4.1.1",
-    "pg": "^8.8.0"
-=======
   "bugs": {
     "url": "https://github.com/kigozi-nich/nick-cse340/issues"
->>>>>>> e084b1e8bc9dcfe2265087a9e77d87c901738bb7
   },
   "homepage": "https://github.com/kigozi-nich/nick-cse340#readme",
   "description": "",
