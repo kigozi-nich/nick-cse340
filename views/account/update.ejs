@@ -1,0 +1,138 @@
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <%  }) %>
+  </ul>
+<% } %>
+
+<div class="account-update">
+  <h1><%= title %></h1>
+
+  <% if (user) { %>
+    <div class="update-forms">
+      <!-- Account Information Update Form -->
+      <div class="form-section">
+        <h2>Update Account Information</h2>
+        <form action="/account/update" method="post">
+          <label for="account_firstname">First Name:</label>
+          <input type="text" id="account_firstname" name="account_firstname" value="<%= user.account_firstname %>" required>
+
+          <label for="account_lastname">Last Name:</label>
+          <input type="text" id="account_lastname" name="account_lastname" value="<%= user.account_lastname %>" required>
+
+          <label for="account_email">Email:</label>
+          <input type="email" id="account_email" name="account_email" value="<%= user.account_email %>" required>
+
+          <input type="hidden" name="account_id" value="<%= user.account_id %>">
+          
+          <button type="submit">Update Information</button>
+        </form>
+      </div>
+
+      <!-- Password Update Form -->
+      <div class="form-section">
+        <h2>Change Password</h2>
+        <form action="/account/change-password" method="post">
+          <label for="account_password">New Password:</label>
+          <input type="password" id="account_password" name="account_password" required 
+                 pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+          <span class="password-requirements">
+            Password must be at least 12 characters and contain at least 1 capital letter, 1 number and 1 special character
+          </span>
+
+          <input type="hidden" name="account_id" value="<%= user.account_id %>">
+          
+          <button type="submit">Change Password</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="back-link">
+      <a href="/account/">Return to Account Management</a>
+    </div>
+  <% } else { %>
+    <p>Please <a href="/account/login">login</a> to update your account information.</p>
+  <% } %>
+</div>
+
+<style>
+.account-update {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.update-forms {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.form-section {
+  background: #f5f5f5;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+button {
+  background: #333;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background: #444;
+}
+
+.password-requirements {
+  font-size: 0.8em;
+  color: #666;
+}
+
+.back-link {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.back-link a {
+  color: #333;
+  text-decoration: none;
+}
+
+.back-link a:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  .update-forms {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+</style>

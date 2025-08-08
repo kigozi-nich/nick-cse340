@@ -1,0 +1,41 @@
+<%- messages() %>
+
+<% if (title) { %>
+    <h1><%= title %></h1>
+<% } else {
+    res.redirect('/')
+} %>
+
+<% if (errors) { %>
+    <ul class="notice">
+        <% errors.array().forEach(error => { %>
+            <li><%= error.msg %></li>
+        <% }) %>
+    </ul>
+<% } %>
+
+<div class="form-container">
+    <form id="addClassificationForm" action="/inv/add-classification" method="post">
+        <fieldset>
+            <legend>Add New Classification</legend>
+            
+            <p class="notice">Note: Classification name must be at least 3 characters and can contain letters, spaces, and hyphens.</p>
+
+            <div class="form-group">
+                <label for="classification_name">Classification Name:</label>
+                <input type="text" 
+                       id="classification_name" 
+                       name="classification_name" 
+                       required 
+                       pattern="[A-Za-z\s-]+" 
+                       value="<%= locals.classification_name %>"
+                       title="Classification name can contain letters, spaces, and hyphens">
+                <div class="message"></div>
+            </div>
+
+            <div class="form-button">
+                <button type="submit">Add Classification</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
