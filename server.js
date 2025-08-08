@@ -28,6 +28,17 @@ app.set("layout", "./layouts/layout") // not at views root
 /* ***********************
  * Middleware
  * ************************/
+<<<<<<< HEAD
+ app.use(session({
+  store: new (require('connect-pg-simple')(session))({
+    createTableIfMissing: true,
+    pool,
+  }),
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true,
+  name: 'sessionId',
+=======
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(require('cookie-parser')())
@@ -48,6 +59,7 @@ app.use(session({
     httpOnly: true,
     maxAge: 1000 * 60 * 60 * 24 // 1 day
   }
+>>>>>>> e084b1e8bc9dcfe2265087a9e77d87c901738bb7
 }))
 
 // Express Messages Middleware

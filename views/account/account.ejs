@@ -1,0 +1,31 @@
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
+<div class="account">
+  <h1><%= title %></h1>
+  <% if (user) { %>
+    <h2>Welcome <%= user.account_firstname %></h2>
+    <p>You're logged in as <%= user.account_email %></p>
+
+    <h3>Account Management</h3>
+    <div class="account-management">
+      <a href="/account/update" class="button">Update Account Information</a>
+      <a href="/account/tickets" class="button">Submit Support Ticket</a>
+      <a href="/account/myTickets" class="button">View My Tickets</a>
+    </div>
+
+    <% if (user.account_type === "Admin" || user.account_type === "Employee") { %>
+      <h3>Inventory Management</h3>
+      <div class="inventory-management">
+        <a href="/inv/" class="button">Manage Inventory</a>
+      </div>
+    <% } %>
+  <% } %>
+</div>

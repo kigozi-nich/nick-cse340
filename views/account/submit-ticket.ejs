@@ -1,0 +1,145 @@
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <%  }) %>
+  </ul>
+<% } %>
+
+<div class="ticket-submission">
+  <h1><%= title %></h1>
+
+  <% if (user) { %>
+    <form action="/account/tickets" method="post" class="ticket-form" onsubmit="console.log('Form submitted with:', {
+      subject: document.getElementById('ticket_subject').value,
+      description: document.getElementById('ticket_description').value
+    })">
+      <div class="form-group">
+        <label for="ticket_subject">Subject:</label>
+        <input type="text" id="ticket_subject" name="ticket_subject" required 
+               maxlength="100" placeholder="Brief description of your issue"
+               oninput="console.log('Subject input:', this.value)">
+      </div>
+
+      <div class="form-group">
+        <label for="ticket_description">Description:</label>
+        <textarea id="ticket_description" name="ticket_description" required
+                  rows="6" placeholder="Please provide detailed information about your issue"
+                  oninput="console.log('Description input:', this.value)"></textarea>
+      </div>
+      <!-- Add hidden input for debugging -->
+      <input type="hidden" name="debug" value="1">
+
+      <div class="form-actions">
+        <button type="submit" class="submit-btn">Submit Ticket</button>
+        <a href="/account/myTickets" class="view-tickets-btn">View My Tickets</a>
+      </div>
+    </form>
+
+    <div class="back-link">
+      <a href="/account/">Return to Account Management</a>
+    </div>
+  <% } else { %>
+    <p>Please <a href="/account/login">login</a> to submit a support ticket.</p>
+  <% } %>
+</div>
+
+<style>
+.ticket-submission {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.ticket-form {
+  background: #f5f5f5;
+  padding: 25px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.submit-btn,
+.view-tickets-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+.submit-btn {
+  background: #333;
+  color: white;
+}
+
+.view-tickets-btn {
+  background: #666;
+  color: white;
+}
+
+.submit-btn:hover,
+.view-tickets-btn:hover {
+  opacity: 0.9;
+}
+
+.back-link {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.back-link a {
+  color: #333;
+  text-decoration: none;
+}
+
+.back-link a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .submit-btn,
+  .view-tickets-btn {
+    width: 100%;
+  }
+}
+</style>
